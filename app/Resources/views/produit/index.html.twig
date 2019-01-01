@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ <div class="container">
+    <h1 class="text-center">Produits list</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Desccourt</th>
+                <th>Desclong</th>
+                <th>Imageprinc</th>
+                <th>Imagesecond</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultat-diporama">
+        {% for produit in produits %}
+            <tr>
+                <td><a href="{{ path('admin_produit_show', { 'id': produit.id }) }}">{{ produit.id }}</a></td>
+                <td>{{ produit.libelle }}</td>
+                <td>{{ produit.desccourt }}</td>
+                <td>{{ produit.desclong }}</td>
+                <td>{{ produit.imageprinc }}</td>
+                <td>{{ produit.imagesecond }}</td>
+                <td>{{ produit.prix }}</td>
+              
+                <td>
+                <a class="btn btn-primary" href="{{ path('admin_produit_edit', { 'id': produit.id }) }}">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modifier
+                </a>
+            </td>
+            <td>
+                <a href="{{ path('admin_produit_delete', { 'id': produit.id }) }}" class="btn btn-danger btn-mini">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> delete
+                </a>
+            </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_produit_new') }}">Create a new produit</a>
+        </li>
+    </ul>
+{% endblock %}

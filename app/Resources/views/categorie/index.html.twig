@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <div class="container">
+
+        <h1 class="text-center">Liste des catégories</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Libelle</th>
+            <th>description</th>
+            <th>image</th>
+           <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="resultat-diporama">
+       {% for categorie in categories %}
+        <tr>
+            <td><a href="{{ path('admin_categorie_show', { 'id': categorie.id }) }}">{{ categorie.id }}</a></td>
+             <td>{{ categorie.libelle }}</td>
+                <td>{{ categorie.description }}</td>
+                <td>{{ categorie.image }}</td>
+            <td>
+                <a class="btn btn-primary" href="{{ path('admin_categorie_edit', { 'id': categorie.id }) }}">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modifier
+                </a>
+            </td>
+            <td>
+                <a href="{{ path('admin_categorie_delete', { 'id': categorie.id }) }}" class="btn btn-danger btn-mini">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> delete
+                </a>
+            </td>
+        </tr>
+         {% endfor %}
+    </tbody>
+</table>
+    <ul>
+        <li>
+            <a href="{{ path('admin_categorie_new') }}">Create a new categorie</a>
+        </li>
+    </ul>
+        
+    </div>
+
+
+{% endblock %}
